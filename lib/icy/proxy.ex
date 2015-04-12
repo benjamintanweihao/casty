@@ -27,7 +27,7 @@ defmodule Icy.Proxy do
   def loop(cont, n, stream, client, ref) do
     case reader(cont, stream, ref) do
       {:ok, data, rest} ->
-        send(client , {:data, n, data})
+        send(client, {:data, n, data})
         loop(rest, n+1, stream, client, ref)
 
       {:error, error} ->
@@ -91,6 +91,5 @@ defmodule Icy.Proxy do
   def reply(stream, ref) do
     reader(fn -> Parser.reply(<<>>) end, stream, ref)
   end
-
 
 end

@@ -74,10 +74,8 @@ defmodule Icy.Parser do
   end
 
   def header_encode([], headers), do: headers
-
   def header_encode([line|lines], headers) do
     [name, value] = S.split("#{line}", ":", parts: 2)
-    # [name, " " <> value] = S.split("#{line}", ":", parts: 2)
     header_encode(lines, [{S.to_atom(name), value}|headers])
   end
 
